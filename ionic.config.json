@@ -1,0 +1,7 @@
+{
+  "name": "myTemple",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
