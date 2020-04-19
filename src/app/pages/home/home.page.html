@@ -1,14 +1,67 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-button (click)="logout()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title>My Dashboard</ion-title>
+    </ion-buttons> -->
+    <ion-title>What's Today</ion-title>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content padding>
- 
+
+<ion-content>
+  <div>
+    <p>Sevas today</p>
+    <div *ngIf="sevas.length != 0">
+      <div *ngFor="let seva of sevas">
+        <ion-card>
+          <ion-card-content style="font-family: cursive;font-size: larger;">
+            <span>{{seva.seva}}</span> for <span>{{seva.too}}</span> on <span>{{seva.date | date: 'dd/MM/yyyy'}}</span>
+            on the occation of <span>{{seva.occation}}</span> of <span>{{seva.behalfOf}}</span>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+    <div *ngIf="sevas.length == 0">
+      <ion-card>
+        <ion-card-content style="font-family: cursive;font-size: larger;">
+          No sevas today
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <div>
+    <p>Programs</p>
+    <div *ngIf='programs.length != 0'>
+      <div *ngFor='let program of programs'>
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-4>Pragram:</ion-col>
+                <ion-col col-4>{{program.program}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Date:</ion-col>
+                <ion-col col-4>{{program.on | date : 'dd/MM/yyyy'}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Contact Number:</ion-col>
+                <ion-col col-4>{{program.contactNum }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngIf='programs.length == 0'>
+        <ion-card>
+          <ion-card-content>
+            No programs today
+          </ion-card-content>
+        </ion-card>
+    </div>
+  </div>
 </ion-content>

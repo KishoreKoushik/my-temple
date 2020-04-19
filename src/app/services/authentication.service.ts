@@ -18,9 +18,9 @@ export class AuthenticationService {
     this.plt.ready().then(() => {
       this.checkToken();
     });
-   }
+  }
 
-   checkToken() {
+  checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         this.authenticationState.next(true); //TODO:what is next?
@@ -29,15 +29,15 @@ export class AuthenticationService {
   }
 
   login(email, password) {
-   return this.fireauth.auth.signInWithEmailAndPassword(email, password)
-    .then(res => {
-      console.log(res);
-      return res;
-    })
-    .catch(err => {
-      alert(err.message);
-      console.log(err);
-    })
+    return this.fireauth.auth.signInWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(err => {
+        alert(err.message);
+        console.log(err);
+      })
     // alert(123);
     // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
     //   this.authenticationState.next(true);
@@ -54,7 +54,7 @@ export class AuthenticationService {
     return this.authenticationState.value;
   }
 
-  signUp(email, password){
+  signUp(email, password) {
     this.fireauth.auth.createUserWithEmailAndPassword(email, password)
       .then(res => {
         if (res.user) {
@@ -68,7 +68,7 @@ export class AuthenticationService {
   }
 
   recover(email) {
-  return this.fireauth.auth.sendPasswordResetEmail(email)
+    return this.fireauth.auth.sendPasswordResetEmail(email)
       .then(data => {
         return data;
       })
@@ -126,16 +126,16 @@ export class AuthenticationService {
   //     });
   // }
 
-//   updatePassword() {
-//     this.user.updatePassword(this.password)
-//       .then(() => {
-//         this.password = '';
-//         this.presentToast('Password updated', false, 'bottom', 1000);
-//         this.error = '';
-//       })
-//       .catch(err => {
-//         console.log(` failed ${err}`);
-//         this.error = err.message;
-//       });
-// }
+  //   updatePassword() {
+  //     this.user.updatePassword(this.password)
+  //       .then(() => {
+  //         this.password = '';
+  //         this.presentToast('Password updated', false, 'bottom', 1000);
+  //         this.error = '';
+  //       })
+  //       .catch(err => {
+  //         console.log(` failed ${err}`);
+  //         this.error = err.message;
+  //       });
+  // }
 }

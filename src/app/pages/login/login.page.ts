@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private router: Router, private storage: Storage) { }
 
   loginForm: FormGroup;
   isLogin: boolean = true;
@@ -31,6 +33,7 @@ export class LoginPage implements OnInit {
       if (this.isLogin)
         this.authService.login(email, password).then(res => {
           if (res) {
+            this.storage.set('isLoggedin', true);
             this.router.navigate(['/home']);
           }
         })
